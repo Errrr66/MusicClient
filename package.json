@@ -4,10 +4,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Vibe Music",
-  "author": {
-    "name": "Alex LiSun",
-    "email": "vibe_music_service@163.com"
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -29,7 +25,7 @@
     "js-cookie": "^3.0.5",
     "nprogress": "^0.2.0",
     "pinia": "^2.3.1",
-    "pinia-plugin-persistedstate": "^4.2.0",
+    "pinia-plugin-persistedstate": "^3.2.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "unplugin-auto-import": "^0.19.0",
