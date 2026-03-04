@@ -1,7 +1,10 @@
 export const MenuData = [
   {
     title: '',
-    children: [{ title: '推荐', icon: 'ri:home-smile-2-line', router: '/' }],
+    children: [
+      { title: '推荐', icon: 'ri:home-smile-2-line', router: '/' },
+      { title: 'AI 问答', icon: 'ri:question-answer-line', router: '/chat' },
+    ],
   },
   {
     title: '发现',

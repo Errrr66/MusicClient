@@ -48,6 +48,10 @@ const router = createRouter({
       path: '/user',
       component: () => import('@/pages/user/index.vue'),
     },
+    {
+      path: '/chat',
+      component: () => import('@/pages/chat/index.vue'),
+    },
   ],
 })
 
