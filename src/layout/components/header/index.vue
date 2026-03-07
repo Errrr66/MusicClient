@@ -45,15 +45,13 @@ watch(
 )
 </script>
 <template>
-  <header class="px-4 py-2 border-b flex items-center">
-    <button class="flex relative w-60" @click="router.push('/')">
+  <header class="px-4 py-2 border-b flex items-center justify-between">
+    <button class="flex relative w-60 items-center" @click="router.push('/')">
       <img src="\logo.svg" alt="logo" class="w-10 h-10 ml-2" />
-      <span class="ml-3 text-2xl font-bold flex justify-center items-center"
-        >Music</span
-      >
+      <span class="ml-3 text-2xl font-bold">Music</span>
     </button>
     <!-- 输入框和头像 -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-center gap-3 flex-1">
       <div class="relative mr-6">
         <Icon
           icon="mdi:magnify"
@@ -62,8 +60,8 @@ watch(
         <input
           v-model="searchText"
           type="text"
-          class="mt-0.5 w-64 text-sm pl-8 pr-2 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 focus:w-80 search-bg"
-          placeholder="搜索..."
+          class="mt-0.5 w-96 text-sm pl-8 pr-2 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 focus:w-80 search-bg"
+          placeholder="想播放什么？"
           @keyup.enter="router.push('/library?query=' + searchText)"
         />
       </div>
@@ -71,7 +69,7 @@ watch(
         <Icon class="text-xl" :icon="currentIcon" />
       </button>
     </div>
-    <div class="ml-auto flex items-center gap-3"><Avatar /></div>
+    <div class="w-60 flex justify-end items-center gap-3"><Avatar /></div>
   </header>
 </template>
 

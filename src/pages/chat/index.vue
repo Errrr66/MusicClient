@@ -44,9 +44,11 @@ const handleSend = async () => {
 
 <template>
   <div class="flex flex-col h-full w-full bg-themeBgColor p-4 gap-4 box-border">
-    <div class="text-2xl font-bold text-primary-foreground flex items-center gap-2">
+    <div
+      class="text-2xl font-bold text-primary-foreground flex items-center gap-2"
+    >
       <Icon icon="ri:robot-line" />
-      <span>AI 助手</span>
+      <span>吃饭、洗澡然后睡觉</span>
     </div>
 
     <div
@@ -64,7 +66,7 @@ const handleSend = async () => {
           :class="[
             msg.role === 'user'
               ? 'bg-blue-600 text-white rounded-br-none'
-              : 'bg-gray-700 text-gray-100 rounded-bl-none'
+              : 'bg-gray-700 text-gray-100 rounded-bl-none',
           ]"
         >
           {{ msg.content }}
@@ -72,13 +74,18 @@ const handleSend = async () => {
       </div>
 
       <div v-if="loading" class="flex justify-start">
-         <div class="bg-gray-700 text-gray-100 rounded-lg p-3 rounded-bl-none text-sm flex items-center gap-2">
-            <Icon icon="eos-icons:bubble-loading" />
-            <span>思考中...</span>
-         </div>
+        <div
+          class="bg-gray-700 text-gray-100 rounded-lg p-3 rounded-bl-none text-sm flex items-center gap-2"
+        >
+          <Icon icon="eos-icons:bubble-loading" />
+          <span>思考中...</span>
+        </div>
       </div>
 
-      <div v-if="messages.length === 0" class="flex flex-col items-center justify-center h-full text-inactive select-none">
+      <div
+        v-if="messages.length === 0"
+        class="flex flex-col items-center justify-center h-full text-inactive select-none"
+      >
         <Icon icon="ri:chat-smile-2-line" class="text-6xl mb-4 opacity-50" />
         <p>有什么可以帮你的吗？</p>
       </div>
@@ -96,7 +103,12 @@ const handleSend = async () => {
           <Icon icon="ri:chat-1-line" class="text-gray-400" />
         </template>
       </el-input>
-      <el-button type="primary" :loading="loading" @click="handleSend" class="!px-6">
+      <el-button
+        type="primary"
+        :loading="loading"
+        @click="handleSend"
+        class="!px-6"
+      >
         发送
       </el-button>
     </div>
@@ -113,4 +125,3 @@ const handleSend = async () => {
   color: white;
 }
 </style>
-

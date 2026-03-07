@@ -3,7 +3,11 @@ export const MenuData = [
     title: '',
     children: [
       { title: '推荐', icon: 'ri:home-smile-2-line', router: '/' },
-      { title: 'AI 问答', icon: 'ri:question-answer-line', router: '/chat' },
+      {
+        title: '🤖',
+        icon: 'ri:question-answer-line',
+        router: '/chat',
+      },
     ],
   },
   {
@@ -13,12 +17,12 @@ export const MenuData = [
       {
         title: '歌手',
         icon: 'ri:mic-line',
-        router: '/artist'
+        router: '/artist',
       },
       {
         title: '歌单',
         icon: 'ri:album-line',
-        router: '/playlist'
+        router: '/playlist',
       },
     ],
   },
@@ -29,7 +33,7 @@ export const MenuData = [
       {
         title: '个人中心',
         icon: 'mi:user',
-        router: '/user'
+        router: '/user',
       },
     ],
   },

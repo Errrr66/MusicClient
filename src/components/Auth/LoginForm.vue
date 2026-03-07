@@ -70,14 +70,30 @@ function switchToReset() {
   <div class="login-container">
     <p class="form-subtitle">输入您的邮箱以登录您的账户</p>
 
-    <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" label-width="0" size="large"
-      @keyup.enter="handleLogin">
+    <el-form
+      ref="loginFormRef"
+      :model="loginForm"
+      :rules="loginRules"
+      label-width="0"
+      size="large"
+      @keyup.enter="handleLogin"
+    >
       <el-form-item prop="email">
-        <el-input v-model="loginForm.email" placeholder="邮箱" :prefix-icon="Message" />
+        <el-input
+          v-model="loginForm.email"
+          placeholder="邮箱"
+          :prefix-icon="Message"
+        />
       </el-form-item>
 
       <el-form-item prop="password" class="mt-6">
-        <el-input v-model="loginForm.password" type="password" placeholder="密码" :prefix-icon="Lock" show-password />
+        <el-input
+          v-model="loginForm.password"
+          type="password"
+          placeholder="密码"
+          :prefix-icon="Lock"
+          show-password
+        />
       </el-form-item>
 
       <div class="forgot-password">
@@ -85,7 +101,12 @@ function switchToReset() {
       </div>
 
       <el-form-item class="mt-6">
-        <el-button class="submit-btn" type="primary" :loading="loading" @click="handleLogin">
+        <el-button
+          class="submit-btn"
+          type="primary"
+          :loading="loading"
+          @click="handleLogin"
+        >
           登录
         </el-button>
       </el-form-item>

@@ -53,7 +53,7 @@ export const AudioStore = defineStore({
     // 设置当前页面的歌曲列表
     setCurrentPageSongs(songs: Song[]) {
       this.currentPageSongs = songs
-    }
+    },
   },
   persist: piniaPersistConfig('AudioStore'),
 })

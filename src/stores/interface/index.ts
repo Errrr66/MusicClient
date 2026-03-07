@@ -29,7 +29,7 @@ export interface trackModel {
   url: string // 音频地址
   duration: number // 时长
   likeStatus: number
-//   lyrics?: ParsedLyrics // 歌词
+  //   lyrics?: ParsedLyrics // 歌词
 }
 
 /* MenuState */

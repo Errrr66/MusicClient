@@ -4,9 +4,14 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { UserStore } from '@/stores/modules/user'
 import defaultAvatar from '@/assets/user.jpg'
-import { updateUserInfo, updateUserAvatar, deleteUser, getUserInfo } from '@/api/system'
+import {
+  updateUserInfo,
+  updateUserAvatar,
+  deleteUser,
+  getUserInfo,
+} from '@/api/system'
 import 'vue-cropper/dist/index.css'
-import { VueCropper } from "vue-cropper";
+import { VueCropper } from 'vue-cropper'
 import { useRouter } from 'vue-router'
 import AuthTabs from '@/components/Auth/AuthTabs.vue'
 
@@ -24,7 +29,7 @@ const userForm = reactive({
   username: userStore.userInfo.username || '',
   phone: userStore.userInfo.phone || '',
   email: userStore.userInfo.email || '',
-  introduction: userStore.userInfo.introduction || ''
+  introduction: userStore.userInfo.introduction || '',
 })
 
 // 表单验证规则
@@ -38,7 +43,11 @@ const userRules = reactive<FormRules>({
     },
   ],
   phone: [
-    { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号码', trigger: 'blur' },
+    {
+      pattern: /^1[3-9]\d{9}$/,
+      message: '请输入正确的手机号码',
+      trigger: 'blur',
+    },
   ],
   email: [
     { required: true, message: '请输入邮箱', trigger: 'blur' },
@@ -204,7 +213,10 @@ const handleDelete = async () => {
       <div class="section-title">头像</div>
       <div class="user-header">
         <div class="avatar-wrapper" @click="handleAvatarClick">
-          <el-avatar :src="userStore.userInfo.avatarUrl || defaultAvatar" :size="100" />
+          <el-avatar
+            :src="userStore.userInfo.avatarUrl || defaultAvatar"
+            :size="100"
+          />
           <div class="avatar-hover">
             <icon-ic:outline-photo-camera class="camera-icon" />
             <span>更新头像</span>
@@ -214,22 +226,48 @@ const handleDelete = async () => {
     </div>
 
     <!-- 头像裁剪弹窗 -->
-    <el-dialog v-model="cropperVisible" title="裁剪头像" width="600px" :close-on-click-modal="false"
-      :close-on-press-escape="false">
+    <el-dialog
+      v-model="cropperVisible"
+      title="裁剪头像"
+      width="600px"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+    >
       <div class="cropper-container">
-        <vue-cropper ref="cropper" :img="cropperImg" :info="true" :canScale="true" :autoCrop="true" :fixedBox="true"
-          :canMove="true" :canMoveBox="true" :centerBox="true" :infoTrue="true" :fixed="true" :fixedNumber="[1, 1]"
-          :high="true" mode="cover" :round="true" />
+        <vue-cropper
+          ref="cropper"
+          :img="cropperImg"
+          :info="true"
+          :canScale="true"
+          :autoCrop="true"
+          :fixedBox="true"
+          :canMove="true"
+          :canMoveBox="true"
+          :centerBox="true"
+          :infoTrue="true"
+          :fixed="true"
+          :fixedNumber="[1, 1]"
+          :high="true"
+          mode="cover"
+          :round="true"
+        />
       </div>
       <template #footer>
         <div class="dialog-footer">
           <div class="flex justify-between items-center w-full">
             <div class="flex">
-              <el-button size="mini" type="info" @click="reset" class="mr-1">重置</el-button>
+              <el-button size="mini" type="info" @click="reset" class="mr-1"
+                >重置</el-button
+              >
               <el-button size="mini" plain @click="changeScale(1)" class="mr-1">
                 <icon-ph:magnifying-glass-plus-light class="mr-0.5" />放大
               </el-button>
-              <el-button size="mini" plain @click="changeScale(-1)" class="mr-1">
+              <el-button
+                size="mini"
+                plain
+                @click="changeScale(-1)"
+                class="mr-1"
+              >
                 <icon-ph:magnifying-glass-minus-light class="mr-0.5" />缩小
               </el-button>
               <el-button size="mini" plain @click="rotateLeft" class="mr-1">
@@ -240,15 +278,31 @@ const handleDelete = async () => {
               </el-button>
             </div>
             <div class="flex">
-              <el-button size="mini" type="warning" plain @click="cropperVisible = false" class="mr-1">取消</el-button>
-              <el-button size="mini" type="primary" @click="handleCropConfirm">确认</el-button>
+              <el-button
+                size="mini"
+                type="warning"
+                plain
+                @click="cropperVisible = false"
+                class="mr-1"
+                >取消</el-button
+              >
+              <el-button size="mini" type="primary" @click="handleCropConfirm"
+                >确认</el-button
+              >
             </div>
           </div>
         </div>
       </template>
     </el-dialog>
 
-    <el-form ref="userFormRef" :model="userForm" :rules="userRules" label-width="0" size="large" class="user-form">
+    <el-form
+      ref="userFormRef"
+      :model="userForm"
+      :rules="userRules"
+      label-width="0"
+      size="large"
+      class="user-form"
+    >
       <div class="section">
         <div class="section-title">用户名</div>
         <el-form-item prop="username">
@@ -273,17 +327,33 @@ const handleDelete = async () => {
       <div class="section">
         <div class="section-title">简介</div>
         <el-form-item prop="introduction">
-          <el-input v-model="userForm.introduction" type="textarea" :rows="4" placeholder="编辑个人简介" maxlength="100"
-            show-word-limit />
+          <el-input
+            v-model="userForm.introduction"
+            type="textarea"
+            :rows="4"
+            placeholder="编辑个人简介"
+            maxlength="100"
+            show-word-limit
+          />
         </el-form-item>
       </div>
 
       <el-form-item class="button-group">
         <div class="flex justify-between w-full">
-          <el-button type="primary" :loading="loading" @click="handleSubmit" class="submit-btn">
+          <el-button
+            type="primary"
+            :loading="loading"
+            @click="handleSubmit"
+            class="submit-btn"
+          >
             更新信息
           </el-button>
-          <el-button type="danger" :loading="loading" @click="handleDelete" class="submit-btn">
+          <el-button
+            type="danger"
+            :loading="loading"
+            @click="handleDelete"
+            class="submit-btn"
+          >
             注销账号
           </el-button>
         </div>

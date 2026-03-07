@@ -10,4 +10,4 @@ export const useLibraryStore = defineStore('LibraryStore', {
       this.tableData = data
     },
   },
-}) 
+})

@@ -20,4 +20,4 @@ export const useArtistStore = defineStore('ArtistStore', {
       this.artistInfo = info
     },
   },
-}) 
+})

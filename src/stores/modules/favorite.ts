@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia'
-import { getFavoritePlaylists, collectPlaylist, cancelCollectPlaylist } from '@/api/system'
+import {
+  getFavoritePlaylists,
+  collectPlaylist,
+  cancelCollectPlaylist,
+} from '@/api/system'
 import type { ResultTable } from '@/api/system'
 import { ElMessage } from 'element-plus'
 import coverImg from '@/assets/cover.png'
@@ -13,7 +17,7 @@ interface FavoritePlaylist {
 export const useFavoriteStore = defineStore('favorite', {
   state: () => ({
     favoritePlaylists: [] as FavoritePlaylist[],
-    loading: false
+    loading: false,
   }),
 
   actions: {
@@ -25,15 +29,15 @@ export const useFavoriteStore = defineStore('favorite', {
           pageNum: 1,
           pageSize: 50,
           title: '',
-          style: ''
+          style: '',
         })
         if (res.code === 0 && res.data) {
           const data = res.data as ResultTable['data']
           if (data?.items) {
-            this.favoritePlaylists = data.items.map(item => ({
+            this.favoritePlaylists = data.items.map((item) => ({
               id: item.playlistId,
               name: item.title,
-              coverImgUrl: item.coverUrl ?? coverImg
+              coverImgUrl: item.coverUrl ?? coverImg,
             }))
           }
         }
@@ -68,7 +72,9 @@ export const useFavoriteStore = defineStore('favorite', {
         if (res.code === 0) {
           ElMessage.success('取消收藏成功')
           // 从列表中移除
-          this.favoritePlaylists = this.favoritePlaylists.filter(item => item.id !== playlistId)
+          this.favoritePlaylists = this.favoritePlaylists.filter(
+            (item) => item.id !== playlistId
+          )
           return true
         }
         return false
@@ -81,6 +87,6 @@ export const useFavoriteStore = defineStore('favorite', {
     // 清空收藏列表
     clearFavoritePlaylists() {
       this.favoritePlaylists = []
-    }
-  }
-}) 
+    },
+  },
+})

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Header from './components/header/index.vue'
 import Aside from './components/aside/index.vue'
+import RightAside from './components/aside/RightAside.vue'
 import Main from './components/main/index.vue'
 import Footer from './components/footer/index.vue'
 // import BG from './components/bg/index.vue'
@@ -18,6 +19,7 @@ provide('audioPlayer', AudioPlayer())
       <div class="flex flex-1 overflow-hidden">
         <Aside />
         <Main />
+        <RightAside />
       </div>
       <Footer />
     </div>

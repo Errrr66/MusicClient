@@ -19,9 +19,13 @@ const props = defineProps({
 })
 
 // 监听数据变化，更新当前页面的歌曲列表
-watch(() => props.data, (newData) => {
-  audio.setCurrentPageSongs(newData)
-}, { immediate: true })
+watch(
+  () => props.data,
+  (newData) => {
+    audio.setCurrentPageSongs(newData)
+  },
+  { immediate: true }
+)
 
 // 转换歌曲实体
 const convertToTrackModel = (song: Song) => {
@@ -46,11 +50,13 @@ const convertToTrackModel = (song: Song) => {
 const handlePlay = async (row: Song) => {
   // 先将所有表格数据转换为 trackModel
   const allTracks = props.data
-    .map(song => convertToTrackModel(song))
-    .filter(track => track !== null)
+    .map((song) => convertToTrackModel(song))
+    .filter((track) => track !== null)
 
   // 找到当前选中歌曲的索引
-  const selectedIndex = props.data.findIndex(song => song.songId === row.songId)
+  const selectedIndex = props.data.findIndex(
+    (song) => song.songId === row.songId
+  )
 
   // 清空现有播放列表并添加所有歌曲
   audio.setAudioStore('trackList', allTracks)
@@ -65,7 +71,7 @@ const handlePlay = async (row: Song) => {
 // 更新所有相同歌曲的喜欢状态
 const updateAllSongLikeStatus = (songId: number, status: number) => {
   // 更新播放列表中的状态
-  audio.trackList.forEach(track => {
+  audio.trackList.forEach((track) => {
     if (Number(track.id) === songId) {
       track.likeStatus = status
     }
@@ -73,7 +79,7 @@ const updateAllSongLikeStatus = (songId: number, status: number) => {
 
   // 更新当前页面的歌曲列表状态
   if (audio.currentPageSongs) {
-    audio.currentPageSongs.forEach(song => {
+    audio.currentPageSongs.forEach((song) => {
       if (song.songId === songId) {
         song.likeStatus = status
       }
@@ -82,7 +88,7 @@ const updateAllSongLikeStatus = (songId: number, status: number) => {
 
   // 更新原始数据
   if (props.data) {
-    const song = props.data.find(song => song.songId === songId)
+    const song = props.data.find((song) => song.songId === songId)
     if (song) {
       song.likeStatus = status
     }
@@ -92,7 +98,7 @@ const updateAllSongLikeStatus = (songId: number, status: number) => {
 // 处理喜欢/取消喜欢
 const handleLike = async (row: Song, e: Event) => {
   e.stopPropagation() // 阻止事件冒泡
-  
+
   if (!userStore.isLoggedIn) {
     ElMessage.warning('请先登录')
     return
@@ -141,16 +147,22 @@ const isCurrentPlaying = (songId: number) => {
 </script>
 
 <template>
-  <el-table :data="data" style="
+  <el-table
+    :data="data"
+    style="
       --el-table-border: none;
       --el-table-border-color: none;
       --el-table-tr-bg-color: none;
       --el-table-header-bg-color: none;
       --el-table-row-hover-bg-color: transparent;
-    " class="!rounded-lg !h-full transition duration-300">
+    "
+    class="!rounded-lg !h-full transition duration-300"
+  >
     <el-table-column>
       <template #header>
-        <div class="grid grid-cols-[auto_4fr_3fr_3fr_1fr_2fr_1fr] items-center gap-6 w-full text-left mt-2">
+        <div
+          class="grid grid-cols-[auto_4fr_3fr_3fr_1fr_2fr_1fr] items-center gap-6 w-full text-left mt-2"
+        >
           <div class="ml-3">标题</div>
           <div class="w-12"></div>
           <div class="ml-1">歌手</div>
@@ -164,16 +176,26 @@ const isCurrentPlaying = (songId: number) => {
         <div
           class="grid grid-cols-[auto_4fr_3fr_3fr_1fr_2fr_1fr] items-center gap-6 w-full group transition duration-300 rounded-2xl p-2"
           :class="[
-            isCurrentPlaying(row.songId) ? 'bg-[hsl(var(--hover-menu-bg))]' : 'hover:bg-[hsl(var(--hover-menu-bg))]',
-            'cursor-pointer'
+            isCurrentPlaying(row.songId)
+              ? 'bg-[hsl(var(--hover-menu-bg))]'
+              : 'hover:bg-[hsl(var(--hover-menu-bg))]',
+            'cursor-pointer',
           ]"
-          @click="handlePlay(row)">
+          @click="handlePlay(row)"
+        >
           <!-- 标题和封面 -->
           <div class="w-10 h-10 relative" v-if="row.coverUrl">
-            <el-image :src="row.coverUrl" fit="cover" lazy :alt="row.songName" class="w-full h-full rounded-md" />
+            <el-image
+              :src="row.coverUrl"
+              fit="cover"
+              lazy
+              :alt="row.songName"
+              class="w-full h-full rounded-md"
+            />
             <!-- Play 按钮，使用 group-hover 控制透明度 -->
             <div
-              class="absolute inset-0 flex items-center justify-center text-white opacity-0 transition-opacity duration-300 z-10 group-hover:opacity-100 group-hover:bg-black/50 rounded-md">
+              class="absolute inset-0 flex items-center justify-center text-white opacity-0 transition-opacity duration-300 z-10 group-hover:opacity-100 group-hover:bg-black/50 rounded-md"
+            >
               <icon-tabler:player-play-filled class="text-lg" />
             </div>
           </div>
@@ -194,14 +216,19 @@ const isCurrentPlaying = (songId: number) => {
           <!-- 喜欢 -->
           <div class="flex items-center ml-1">
             <el-button text circle @click="handleLike(row, $event)">
-              <icon-mdi:cards-heart-outline v-if="!userStore.isLoggedIn || row.likeStatus === 0" class="text-lg" />
+              <icon-mdi:cards-heart-outline
+                v-if="!userStore.isLoggedIn || row.likeStatus === 0"
+                class="text-lg"
+              />
               <icon-mdi:cards-heart v-else class="text-lg text-red-500" />
             </el-button>
           </div>
 
           <!-- 时长 -->
           <div class="text-left ml-8">
-            <span>{{ formatMillisecondsToTime(Number(row.duration) * 1000) }}</span>
+            <span>{{
+              formatMillisecondsToTime(Number(row.duration) * 1000)
+            }}</span>
           </div>
 
           <!-- 下载 -->

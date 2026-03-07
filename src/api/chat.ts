@@ -6,4 +6,3 @@ export const sendChatMessage = (message: string) => {
     { message }
   )
 }
-

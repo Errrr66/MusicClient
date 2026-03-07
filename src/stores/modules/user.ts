@@ -32,7 +32,7 @@ export const UserStore = defineStore('UserStore', {
         email: userInfo.email,
         avatarUrl: userInfo.userAvatar,
         introduction: userInfo.introduction,
-        token: token
+        token: token,
       }
       this.isLoggedIn = true
     },
@@ -50,12 +50,12 @@ export const UserStore = defineStore('UserStore', {
       // 清空所有歌曲的喜欢状态
       const audioStore = AudioStore()
       // 清空播放列表中的喜欢状态
-      audioStore.trackList.forEach(track => {
+      audioStore.trackList.forEach((track) => {
         track.likeStatus = 0
       })
       // 清空当前页面歌曲列表中的喜欢状态
       if (audioStore.currentPageSongs) {
-        audioStore.currentPageSongs.forEach(song => {
+        audioStore.currentPageSongs.forEach((song) => {
           song.likeStatus = 0
         })
       }
@@ -68,21 +68,27 @@ export const UserStore = defineStore('UserStore', {
         if (response.code === 0) {
           // 先保存token
           const token = response.data
-          
+
           // 设置token到userInfo
           this.userInfo = { token }
 
           try {
             // 再获取用户信息
             const userInfoResponse = await getUserInfo()
-            
+
             if (userInfoResponse.code === 0) {
               this.setUserInfo(userInfoResponse.data, token)
               return { success: true, message: '登录成功' }
             }
-            return { success: false, message: userInfoResponse.message || '获取用户信息失败' }
+            return {
+              success: false,
+              message: userInfoResponse.message || '获取用户信息失败',
+            }
           } catch (error: any) {
-            return { success: false, message: error.message || '获取用户信息失败' }
+            return {
+              success: false,
+              message: error.message || '获取用户信息失败',
+            }
           }
         }
         return { success: false, message: response.message || '登录失败' }
@@ -102,7 +108,7 @@ export const UserStore = defineStore('UserStore', {
       } catch (error: any) {
         return { success: false, message: error.message || '退出失败' }
       }
-    }
+    },
   },
   persist: piniaPersistConfig('UserStore'),
 })

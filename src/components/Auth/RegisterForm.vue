@@ -110,16 +110,33 @@ function switchToLogin() {
   <div class="register-container">
     <p class="form-subtitle">创建一个新账户</p>
 
-    <el-form ref="registerFormRef" :model="registerForm" :rules="registerRules" label-width="0" size="large"
-      @keyup.enter="handleRegister">
+    <el-form
+      ref="registerFormRef"
+      :model="registerForm"
+      :rules="registerRules"
+      label-width="0"
+      size="large"
+      @keyup.enter="handleRegister"
+    >
       <el-form-item prop="username">
-        <el-input v-model="registerForm.username" placeholder="用户名" :prefix-icon="User" />
+        <el-input
+          v-model="registerForm.username"
+          placeholder="用户名"
+          :prefix-icon="User"
+        />
       </el-form-item>
 
       <el-form-item prop="email" class="mt-6">
-        <el-input v-model="registerForm.email" placeholder="邮箱" :prefix-icon="Message">
+        <el-input
+          v-model="registerForm.email"
+          placeholder="邮箱"
+          :prefix-icon="Message"
+        >
           <template #append>
-            <el-button :disabled="!!countdown || loading" @click="handleSendCode">
+            <el-button
+              :disabled="!!countdown || loading"
+              @click="handleSendCode"
+            >
               {{ countdown ? `${countdown}s后重试` : '获取验证码' }}
             </el-button>
           </template>
@@ -127,15 +144,30 @@ function switchToLogin() {
       </el-form-item>
 
       <el-form-item prop="verificationCode" class="mt-6">
-        <el-input v-model="registerForm.verificationCode" placeholder="验证码" :prefix-icon="Key" />
+        <el-input
+          v-model="registerForm.verificationCode"
+          placeholder="验证码"
+          :prefix-icon="Key"
+        />
       </el-form-item>
 
       <el-form-item prop="password" class="mt-6">
-        <el-input v-model="registerForm.password" type="password" placeholder="密码" :prefix-icon="Lock" show-password />
+        <el-input
+          v-model="registerForm.password"
+          type="password"
+          placeholder="密码"
+          :prefix-icon="Lock"
+          show-password
+        />
       </el-form-item>
 
       <el-form-item class="mt-6">
-        <el-button class="submit-btn" type="primary" :loading="loading" @click="handleRegister">
+        <el-button
+          class="submit-btn"
+          type="primary"
+          :loading="loading"
+          @click="handleRegister"
+        >
           注册
         </el-button>
       </el-form-item>
@@ -147,7 +179,6 @@ function switchToLogin() {
     </p>
   </div>
 </template>
-
 
 <style scoped>
 .register-container {

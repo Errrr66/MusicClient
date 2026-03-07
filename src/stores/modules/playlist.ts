@@ -29,4 +29,4 @@ export const usePlaylistStore = defineStore('PlaylistStore', {
       this.songs = songs
     },
   },
-}) 
+})
